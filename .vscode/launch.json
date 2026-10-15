@@ -1,0 +1,61 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "全栈：FastAPI + Vite + Edge",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "${workspaceFolder}/backend/.venv/Scripts/python.exe",
+      "module": "uvicorn",
+      "args": ["conveditor.main:app", "--host", "127.0.0.1", "--port", "9002"],
+      "cwd": "${workspaceFolder}/backend",
+      "envFile": "${workspaceFolder}/.env",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/backend/src"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "serverReadyAction": {
+        "pattern": "Uvicorn running on (http://127\\.0\\.0\\.1:9002)",
+        "action": "startDebugging",
+        "name": "前端：Vite + Edge",
+        "killOnServerStop": true
+      }
+    },
+    {
+      "name": "后端：FastAPI",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "${workspaceFolder}/backend/.venv/Scripts/python.exe",
+      "module": "uvicorn",
+      "args": ["conveditor.main:app", "--host", "127.0.0.1", "--port", "9002"],
+      "cwd": "${workspaceFolder}/backend",
+      "envFile": "${workspaceFolder}/.env",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/backend/src"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "前端：Vite + Edge",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/frontend/node_modules/vite/bin/vite.js",
+      "args": ["--port", "5175"],
+      "cwd": "${workspaceFolder}/frontend",
+      "env": {
+        "CONVEDITOR_API_PROXY": "http://127.0.0.1:9002"
+      },
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**", "${workspaceFolder}/frontend/node_modules/**"],
+      "serverReadyAction": {
+        "pattern": "Local:\\s+(http://localhost:5175/)",
+        "uriFormat": "%s",
+        "action": "debugWithEdge",
+        "webRoot": "${workspaceFolder}/frontend",
+        "killOnServerStop": true
+      }
+    }
+  ]
+}

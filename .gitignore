@@ -1,0 +1,26 @@
+# Local configuration
+.env
+.env.*
+!.env.example
+
+# Frontend
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+
+# Local files
+data/
+test-results/
+playwright-report/
+*.log
+.DS_Store
+Thumbs.db
